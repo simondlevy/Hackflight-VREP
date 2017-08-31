@@ -77,14 +77,14 @@ On my computer this is <b>/Applications/V-REP_PRO_EDU_V3_3_1_Mac</b>
 You will need Visual Studio 2015.  After cloning the hackflight repository,
 double-click on <b>v_repExtHackflight.vcxproj</b> to launch the project.
 Building for Release will create the DLL file, which you can then move into the
-V-REP folder as in the Windows quickstart above.
+V-REP folder as in the Windows quickstart above.  
 
 <b>Developing for Linux and Mac OS X</b>
 
-After cloning the hackflight repository, edit the <tt>VREP\_DIR</tt> variable in
-the Makefile in this directory (<b>hackflight/sim/outdoors</b>) to reflect where you
-installed V-REP.  Typing <b>make install</b> should then build the plugin and
-install it the appropriate place.
+After cloning the Hackflight <a href="https://github.com/simdlevy/Hackflight">repository</a>, 
+edit the <tt>VREP\_DIR</tt> variable in the Makefile in this directory
+(<b>outdoors</b>) to reflect where you installed V-REP.  Typing <b>make
+install</b> should then build the plugin and install it the appropriate place.
 
 <b>Companion-Board Simulation</b>
 
