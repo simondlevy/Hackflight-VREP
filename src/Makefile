@@ -26,7 +26,7 @@ VREP_DIR_OSX   = /Applications/V-REP_PRO_EDU_V3_3_2_Mac
 
 COMMON = $(VREP_DIR)/programming/common/
 CFLAGS = -std=c++11 -Wall -D_SIM \
-		 -I$(VREP_DIR)/programming/include/ -I. -I.. -I$(HACKFLIGHT_DIR)/common -I$(HACKFLIGHT_DIR)/include \
+		 -I$(VREP_DIR)/programming/include/ -I. -I../../src -I$(HACKFLIGHT_DIR)/common -I$(HACKFLIGHT_DIR)/include \
 		 -Wall -fPIC -static
 
 OS = $(shell uname -s)
@@ -49,15 +49,15 @@ ALL = $(PLUGIN)
 
 all: $(ALL)
 
-libv_repExtHackflight.$(EXT): *.hpp ../*.cpp ../*.hpp $(HACKFLIGHT_DIR)/include/*.hpp 
-	g++ $(CFLAGS) -c -DVREP_DIR=\"$(VREP_LIBDIR)\" ../v_repExtHackflight.cpp 
+libv_repExtHackflight.$(EXT): *.hpp ../../src/*.cpp ../../src/*.hpp $(HACKFLIGHT_DIR)/include/*.hpp 
+	g++ $(CFLAGS) -c -DVREP_DIR=\"$(VREP_LIBDIR)\" ../../src//v_repExtHackflight.cpp 
 	g++ $(CFLAGS) -c $(HACKFLIGHT_DIR)/common/serial.cpp
-	g++ $(CFLAGS) -c ../controller_Posix.cpp 
-	g++ $(CFLAGS) -c ../controller_$(OS).cpp 
+	g++ $(CFLAGS) -c ../../src/controller_Posix.cpp 
+	g++ $(CFLAGS) -c ../../src/controller_$(OS).cpp 
 	g++ $(CFLAGS) -c $(COMMON)/scriptFunctionData.cpp 
 	g++ $(CFLAGS) -c $(COMMON)/scriptFunctionDataItem.cpp
 	g++ $(CFLAGS) -c $(COMMON)/v_repLib.cpp
-	g++ $(CFLAGS) -c ../MSPPG.cpp
+	g++ $(CFLAGS) -c ../../src/MSPPG.cpp
 	g++ *.o -o libv_repExtHackflight.$(EXT) -lpthread -shared $(JOYLIB) -lmsppg
 
 install: $(PLUGIN)
