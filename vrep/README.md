@@ -1,4 +1,4 @@
-# HackflightSim: A cross-platform flight simulator using the Hackflight firmware
+# Running Hackflight-Sim in the V-REP simulator
 
 <img src="hackflight.png">
 
