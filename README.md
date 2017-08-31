@@ -1,4 +1,12 @@
-# Running Hackflight-Sim in the V-REP simulator
+# Running Hackflight in the V-REP simulator
+
+<img src"hackflight.png">
+
+Hackflight-VREP is a cross-platform flight simulator using the <a
+href="https://github.com/simondlevy/Hackflight">Hackflight</a> firmware and the
+V-REP robotics simulator.  Originally part of the Hackflight repository,
+Hackflight-VREP was broken off into its own repository because of its much
+larger size.
 
 <b>Quickstart, Windows</b>
 
