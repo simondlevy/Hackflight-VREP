@@ -18,7 +18,7 @@
 #
 
 # Edit this for where you installed Hackflight
-HACKFLIGHT_DIR = $(HOME)/Desktop/hackflight
+HACKFLIGHT_DIR = $(HOME)/Desktop/Hackflight
  
 # Edit this for where you installed V-REP
 VREP_DIR_LINUX = $(HOME)/Software/V-REP_PRO_EDU_V3_4_0_Linux

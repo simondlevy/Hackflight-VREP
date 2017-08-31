@@ -139,9 +139,6 @@ static int accelHandle;
 static int greenLedHandle;
 static int redLedHandle;
 
-// Support for reporting status of aux switch (alt-hold, etc.)
-static uint8_t auxStatus;
-
 // LED support
 
 class LED {
@@ -176,7 +173,7 @@ class LED {
 static LED leds[2];
 
 // forward declaration
-static void startToast(const char * message, int colorR, int colorG, int colorB);
+//static void startToast(const char * message, int colorR, int colorG, int colorB);
 
 // Board implementation ======================================================
 
@@ -213,14 +210,14 @@ const Config& VrepSimBoard::getConfig()
     config.loop.imuLoopMicro       = 10000;    // VREP's shortest simulation period
 
     // PIDs
-    config.pid.levelP          = 0.10f;
+    config.stabilize.levelP          = 0.10f;
 
-    config.pid.ratePitchrollP  = 0.125f;
-    config.pid.ratePitchrollI  = 0.05f;
-    config.pid.ratePitchrollD  = 0.01f;
+    config.stabilize.ratePitchrollP  = 0.125f;
+    config.stabilize.ratePitchrollI  = 0.05f;
+    config.stabilize.ratePitchrollD  = 0.01f;
 
-    config.pid.yawP            = 0.1f;
-    config.pid.yawI            = 0.05f;
+    config.stabilize.yawP            = 0.1f;
+    config.stabilize.yawI            = 0.05f;
 
     return config;
 }
@@ -287,27 +284,6 @@ void VrepSimBoard::writeMotor(uint8_t index, uint16_t value)
 }
 
 
-void VrepSimBoard::extrasHandleAuxSwitch(uint8_t status)
-{
-    if (status != auxStatus) {
-        char message[100];
-        switch (status) {
-            case 1:
-                sprintf(message, "ENTERING ALT-HOLD");
-                break;
-            case 2:
-                sprintf(message, "ENTERING GUIDED MODE");
-                break;
-            default:
-                sprintf(message, "ENTERING NORMAL MODE");
-        }
-        startToast(message, 1,1,0);
-    }
-
-    auxStatus = status;
-}
-
-
 void VrepSimBoard::delayMilliseconds(uint32_t msec)
 {
 }
@@ -357,12 +333,14 @@ static void hideToastDialog(void)
     toastDialogHandle = -1;
 }
 
+/*
 static void startToast(const char * message, int colorR, int colorG, int colorB)
 {
     hideToastDialog();
     toastDialogHandle = displayDialog("", (char *)message, (float)colorR, (float)colorG, (float)colorB, sim_dlgstyle_message);
     toastDialogStartMicros = micros; 
 }
+*/
 
 // --------------------------------------------------------------------------------------
 // simExtHackflight_start

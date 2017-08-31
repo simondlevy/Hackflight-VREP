@@ -43,7 +43,6 @@ namespace hf {
             virtual void     serialWriteByte(uint8_t c) override;
             virtual void     debug(char * msg) override;
             virtual void     writeMotor(uint8_t index, uint16_t value) override;
-            virtual void     extrasHandleAuxSwitch(uint8_t status) override;
             virtual void     delayMilliseconds(uint32_t msec) override;
 
     private: // types
