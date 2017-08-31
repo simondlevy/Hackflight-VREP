@@ -1,20 +1,23 @@
 /*
-   controller_Darwin.cpp : OS X support for controllers in Hackflight simulator plugin
+   controller_Darwin.cpp : OS X support for controllers in Hackflight-VREP simulator plugin
 
    Copyright (C) Simon D. Levy, Matt Lubas, and Julio Hidalgo Lopez 2016
 
-   This file is part of Hackflight.
+   NO LONGER SUPPORTED
 
-   Hackflight is free software: you can redistribute it and/or modify
+   This file is part of Hackflight-VREP.
+
+   Hackflight-VREP is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
-   Hackflight is distributed in the hope that it will be useful,
+
+   Hackflight-VREP is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
    You should have received a copy of the GNU General Public License
-   along with Hackflight.  If not, see <http://www.gnu.org/licenses/>.
+   along with Hackflight-VREP.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "controller.hpp"
