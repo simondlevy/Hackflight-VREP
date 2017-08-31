@@ -22,49 +22,37 @@ HACKFLIGHT_DIR = $(HOME)/Desktop/Hackflight
  
 # Edit this for where you installed V-REP
 VREP_DIR_LINUX = $(HOME)/Software/V-REP_PRO_EDU_V3_4_0_Linux
-VREP_DIR_OSX   = /Applications/V-REP_PRO_EDU_V3_3_2_Mac
 
 COMMON = $(VREP_DIR)/programming/common/
 CFLAGS = -std=c++11 -Wall -D_SIM \
-		 -I$(VREP_DIR)/programming/include/ -I. -I../../src -I$(HACKFLIGHT_DIR)/common -I$(HACKFLIGHT_DIR)/include \
+		 -I$(VREP_DIR)/programming/include/ -I. -I../../src -I$(HACKFLIGHT_DIR)/include \
 		 -Wall -fPIC -static
 
-OS = $(shell uname -s)
-ifeq ($(OS), Linux)
-	EXT = so
-	CFLAGS += -I/usr/include/SDL
-	VREP_DIR = $(VREP_DIR_LINUX)
-    VREP_LIBDIR = $(VREP_DIR)
-else
-	EXT = dylib
-	CFLAGS += -I/Library/Frameworks/SDL2.framework/Headers/
-	JOYLIB = -lSDL2
-	VREP_DIR = $(VREP_DIR_OSX)
-    VREP_LIBDIR = $(VREP_DIR)/vrep.app/Contents/MacOS/
-endif
+CFLAGS += -I/usr/include/SDL
+VREP_DIR = $(VREP_DIR_LINUX)
+VREP_LIBDIR = $(VREP_DIR)
 
-PLUGIN = libv_repExtHackflight.$(EXT)
+PLUGIN = libv_repExtHackflight.so
 
 ALL = $(PLUGIN) 
 
 all: $(ALL)
 
-libv_repExtHackflight.$(EXT): *.hpp ../../src/*.cpp ../../src/*.hpp $(HACKFLIGHT_DIR)/include/*.hpp 
+$(PLUGIN): *.cpp ../../src/*.cpp ../../src/*.hpp $(HACKFLIGHT_DIR)/include/*.hpp 
 	g++ $(CFLAGS) -c -DVREP_DIR=\"$(VREP_LIBDIR)\" ../../src//v_repExtHackflight.cpp 
-	g++ $(CFLAGS) -c $(HACKFLIGHT_DIR)/common/serial.cpp
 	g++ $(CFLAGS) -c ../../src/controller_Posix.cpp 
-	g++ $(CFLAGS) -c ../../src/controller_$(OS).cpp 
+	g++ $(CFLAGS) -c ../../src/controller_Linux.cpp 
 	g++ $(CFLAGS) -c $(COMMON)/scriptFunctionData.cpp 
 	g++ $(CFLAGS) -c $(COMMON)/scriptFunctionDataItem.cpp
 	g++ $(CFLAGS) -c $(COMMON)/v_repLib.cpp
 	g++ $(CFLAGS) -c ../../src/MSPPG.cpp
-	g++ *.o -o libv_repExtHackflight.$(EXT) -lpthread -shared $(JOYLIB) -lmsppg
+	g++ *.o -o libv_repExtHackflight.so -lpthread -shared $(JOYLIB) -lmsppg
 
 install: $(PLUGIN)
 	cp $(PLUGIN) $(VREP_LIBDIR)
 
 release: $(PLUGIN)
-	cp $(PLUGIN) Release
+	cp $(PLUGIN) x64/Release
 
 clean:
 	rm -f $(ALL) *.o *.pyc *~

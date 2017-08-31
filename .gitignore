@@ -1,10 +1,8 @@
 scenes/outdoors/x64/Release/v_repExtHackflight.iobj
 scenes/outdoors/x64/Release/v_repExtHackflight.ipdb
-scenes/outdoors/x64/Release/v_repExtHackflight.dll
 scenes/outdoors/v_repExtHackflight.VC.db
 scenes/outdoors/x64/Release/v_repExtHackflight.iobj
 scenes/outdoors/x64/Release/v_repExtHackflight.ipdb
-libv_repExtHackflight.*
 sonar/getimu
 common/tests/readserial
 *.o

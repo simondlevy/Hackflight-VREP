@@ -52,7 +52,7 @@ centered).
 <ol>
 <li> Install <a href="http://www.coppeliarobotics.com/downloads.html">V-REP</a>.
 <p><li>Clone the hackflight repository.
-<p><li>Drag the plugin <b>scenes/outdoors/Release/libv_repExtHackflight.so</b>
+<p><li>Drag the plugin <b>scenes/outdoors/x64/Release/libv_repExtHackflight.so</b>
 to the V-REP folder where the other plugins are. On my computer this is
 <b>~/Software//V-REP_PRO_EDU_V3_3_1_64_Linux</b>.
 <p><li>Plug in your R/C transmitter, joystick, or game controller (see above).  On Linux you can
