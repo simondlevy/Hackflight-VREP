@@ -1,7 +1,10 @@
-/*
-   sim_extras.hpp : Common declarations for extra functions in simulator
+#!/usr/bin/env python
 
-   Copyright (C) Simon D. Levy, Matt Lubas, and Julio Hidalgo Lopez 2016
+'''
+   writeserial.py : Python test code for C++ SerialConnection class.
+   Works with readserial.cpp to illustrate bytesAvailable(), readBytes() methods.
+
+   Copyright (C) Simon D. Levy 2016
 
    This file is part of Hackflight.
 
@@ -10,24 +13,27 @@
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
    Hackflight is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   but WITHOUT ANY WARRANTY without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
    You should have received a copy of the GNU General Public License
    along with Hackflight.  If not, see <http://www.gnu.org/licenses/>.
-*/
+'''
 
-#pragma once
 
-#include <stdint.h>
-#include <board.hpp>
+from serial import Serial
+from sys import argv
 
-// Implemented in sim_extras.cpp for each scene
-void simExtrasStart(void);
-void simExtrasUpdate(void);
-void simExtrasMessage(int message, int * auxiliaryData, void * customData);
-void simExtrasStop(void);
+if len(argv) < 3:
+    print('Usage:   %s PORTNAME BAUDRATE' % argv[0])
+    print('Example: %s /dev/ttyUSB0 115200' % argv[0])
+    exit(1)
 
-// Implemented in v_repExtHackflight.cpp
-void errorDialog(char * message);
+s = Serial(argv[1], int(argv[2]))
 
+k = 0
+
+while True:
+
+    s.write(chr(ord('a')+k))
+    k = (k+1) % 26

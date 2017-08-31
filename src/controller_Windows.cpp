@@ -122,8 +122,8 @@ void controllerRead(controller_t controller, float * demands)
             break;
 
         case PS3:
-            demands[0] =  joynorm(joyState.dwZpos);            // roll
-            demands[1] = -joynorm(joyState.dwRpos);            // pitch
+            demands[0] = -joynorm(joyState.dwZpos);            // roll
+            demands[1] =  joynorm(joyState.dwRpos);            // pitch
             demands[2] =  joynorm(joyState.dwXpos);            // yaw
             demands[3] = -joynorm(joyState.dwYpos);            // throttle
             buttonToAuxDemand(demands, joyState.dwButtons); // aux switch

@@ -91,7 +91,7 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\levys\Desktop\hackflight\boards\mw32;C:\Users\levys\Desktop\hackflight\include;C:\Users\levys\Desktop\hackflight\common;C:\Users\levys\Desktop\hackflight\sim\outdoors;C:\Users\levys\Desktop\hackflight\sim;C:\Users\levys\Desktop\hackflight\firmware;C:\Program Files %28x86%29\V-REP3\V-REP_PRO_EDU\programming\include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\include;C:\Users\levys\Desktop\Hackflight\include;C:\Users\levys\Desktop\Hackflight\common;C:\Users\levys\Desktop\Hackflight-VREP\src;$(IncludePath)</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\levys\Desktop\hackflight\boards\mw32;C:\Users\levys\Desktop\hackflight\include;C:\Users\levys\Desktop\hackflight\common;C:\Users\levys\Desktop\hackflight\sim\outdoors;C:\Users\levys\Desktop\hackflight\sim;C:\Users\levys\Desktop\hackflight\firmware;C:\Program Files %28x86%29\V-REP3\V-REP_PRO_EDU\programming\include;$(IncludePath)</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\levys\Desktop\hackflight\common;C:\Users\levys\Desktop\hackflight\sim\outdoors;C:\Users\levys\Desktop\hackflight\firmware;C:\Users\levys\Desktop\hackflight\sim;C:\Program Files %28x86%29\V-REP3\V-REP_PRO_EDU\programming\include;$(IncludePath)</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\levys\Desktop\hackflight\common;C:\Users\levys\Desktop\hackflight\sim\outdoors;C:\Users\levys\Desktop\hackflight\firmware;C:\Users\levys\Desktop\hackflight\sim;C:\Program Files %28x86%29\V-REP3\V-REP_PRO_EDU\programming\include;$(IncludePath)</IncludePath>
@@ -162,7 +162,7 @@
       <MkTypLibCompatible>false</MkTypLibCompatible>
     </Midl>
     <ClCompile>
-      <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\include;../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_USRDLL;_SIM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>
@@ -192,13 +192,13 @@
       <MkTypLibCompatible>false</MkTypLibCompatible>
     </Midl>
     <ClCompile>
-      <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_USRDLL;_SIM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>C:\Users\levys\Desktop\Hackflight-VREP\src;C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -216,11 +216,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\Program Files (x86)\V-REP3\V-REP_PRO_EDU\programming\common\scriptFunctionData.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\Program Files (x86)\V-REP3\V-REP_PRO_EDU\programming\common\scriptFunctionDataItem.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\Program Files (x86)\V-REP3\V-REP_PRO_EDU\programming\common\v_repLib.cpp" />
-    <ClCompile Include="..\controller_Windows.cpp" />
-    <ClCompile Include="..\v_repExtHackflight.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\Program Files\V-REP3\V-REP_PRO_EDU\programming\common\scriptFunctionData.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\Program Files\V-REP3\V-REP_PRO_EDU\programming\common\scriptFunctionDataItem.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\Program Files\V-REP3\V-REP_PRO_EDU\programming\common\v_repLib.cpp" />
+    <ClCompile Include="..\..\src\controller_Windows.cpp" />
+    <ClCompile Include="..\..\src\v_repExtHackflight.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

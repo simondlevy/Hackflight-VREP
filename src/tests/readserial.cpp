@@ -1,7 +1,7 @@
 /*
-   sim_extras.hpp : Common declarations for extra functions in simulator
+   readserial.cpp : Test code for SerialConnection class
 
-   Copyright (C) Simon D. Levy, Matt Lubas, and Julio Hidalgo Lopez 2016
+   Copyright (C) Simon D. Levy
 
    This file is part of Hackflight.
 
@@ -17,17 +17,33 @@
    along with Hackflight.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#pragma once
+#include <stdio.h>
+#include <stdlib.h>
 
-#include <stdint.h>
-#include <board.hpp>
+#include "serial.hpp"
 
-// Implemented in sim_extras.cpp for each scene
-void simExtrasStart(void);
-void simExtrasUpdate(void);
-void simExtrasMessage(int message, int * auxiliaryData, void * customData);
-void simExtrasStop(void);
+int main(int argc, char ** argv)
+{
+    if (argc < 3) {
+        fprintf(stderr, "Usage:   %s PORTNAME BAUDRATE\n", argv[0]);
+        fprintf(stderr, "Example: %s /dev/ttyUSB0 57600\n", argv[0]);
+        exit(1);
+    }
 
-// Implemented in v_repExtHackflight.cpp
-void errorDialog(char * message);
+    SerialConnection s(argv[1], atoi(argv[2]));
 
+    s.openConnection();
+
+    while (true) {
+
+        while (s.bytesAvailable()) {
+            char c;
+            s.readBytes(&c, 1);
+            printf("%c\n", c);
+        }
+    }
+
+    s.closeConnection();
+
+    return 0;
+}

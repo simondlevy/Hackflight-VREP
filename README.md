@@ -8,14 +8,16 @@ V-REP robotics simulator.  Originally part of the Hackflight repository,
 Hackflight-VREP was broken off into its own repository because of its much
 larger size.
 
+<b>I am only maintaining this simulator for 64-bit platforms.</b>
+
 <b>Quickstart, Windows</b>
 
 <ol>
 <li> Install <a href="http://www.coppeliarobotics.com/downloads.html">V-REP</a>.
 <p><li>Clone the hackflight repository.
-<p><li>Drag the plugin <b>hackflight\sim\outdoors\Release\v_repExtHackflight.dll</b>
+<p><li>Drag the plugin <b>scenes\outdoors\x64\Release\v_repExtHackflight.dll</b>
 to the V-REP folder where the other DLLs are. On my computer this is
-<b>C:\Program FIles (x86)\V-REP3\V-REP_PRO_EDU</b>.
+<b>C:\Program FIles\V-REP3\V-REP_PRO_EDU</b>.
 <p><li>Plug in your R/C transmitter, joystick, or game controller. Currently supported:
 <p><ul>
 <li> FrkSky Taranis transmitter with USB cable
@@ -50,7 +52,7 @@ centered).
 <ol>
 <li> Install <a href="http://www.coppeliarobotics.com/downloads.html">V-REP</a>.
 <p><li>Clone the hackflight repository.
-<p><li>Drag the plugin <b>hackflight/sim/outdoors/Release/libv_repExtHackflight.so</b>
+<p><li>Drag the plugin <b>scenes/outdoors/Release/libv_repExtHackflight.so</b>
 to the V-REP folder where the other plugins are. On my computer this is
 <b>~/Software//V-REP_PRO_EDU_V3_3_1_64_Linux</b>.
 <p><li>Plug in your R/C transmitter, joystick, or game controller (see above).  On Linux you can
@@ -62,24 +64,6 @@ to modify that setting in <b>controller_Linux.cpp</b>.
 <p><li> Follow steps 6-7 above.
 </ol>
 
-<b>Quickstart, Mac OS X</b>
-<p>
-<b><i>Note: The simulator runs much slower on OS X for some reason.</i></b>
-<ol>
-<li> Install <a href="http://www.coppeliarobotics.com/downloads.html">V-REP</a>.
-<p><li> Install the <a href="https://www.libsdl.org/release/SDL2-2.0.4.dmg">SDL runtime binaries</a> 
-in your <b>/Library/Frameworks</b> folder.
-<p><li>Clone the hackflight repository.
-<p><li>Drag the plugin <b>hackflight/sim/outdoors/Release/libv_repExtHackflight.dylib</b>
-to the V-REP folder where the other plugins are. On my computer this is
-<b>/Applications/V-REP_PRO_EDU_V3_3_1_Mac/vrep.app/Contents/MacOS</b>
-<p><li>Plug in your R/C transmitter, joystick, or game controller (see above).
-<p><li> Double-click on the vrep icon in the location where you installed V-REP.  
-On my computer this is <b>/Applications/V-REP_PRO_EDU_V3_3_1_Mac</b>
-<p><li> Follow steps 6-7 above.
-</ol>
-
-
 <b>Developing for Windows</b>
 
 You will need Visual Studio 2015.  After cloning the hackflight repository,
@@ -87,7 +71,7 @@ double-click on <b>v_repExtHackflight.vcxproj</b> to launch the project.
 Building for Release will create the DLL file, which you can then move into the
 V-REP folder as in the Windows quickstart above.  
 
-<b>Developing for Linux and Mac OS X</b>
+<b>Developing for Linux</b>
 
 After cloning the Hackflight <a href="https://github.com/simdlevy/Hackflight">repository</a>, 
 edit the <tt>VREP\_DIR</tt> variable in the Makefile in this directory

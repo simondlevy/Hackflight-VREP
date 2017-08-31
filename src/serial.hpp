@@ -1,7 +1,7 @@
 /*
-   sim_extras.hpp : Common declarations for extra functions in simulator
+   serial.hpp : Class declaration for SerialConnection class
 
-   Copyright (C) Simon D. Levy, Matt Lubas, and Julio Hidalgo Lopez 2016
+   Copyright (C) Simon D. Levy 2016
 
    This file is part of Hackflight.
 
@@ -17,17 +17,28 @@
    along with Hackflight.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#pragma once
+class SerialConnection {
 
-#include <stdint.h>
-#include <board.hpp>
+    public:
 
-// Implemented in sim_extras.cpp for each scene
-void simExtrasStart(void);
-void simExtrasUpdate(void);
-void simExtrasMessage(int message, int * auxiliaryData, void * customData);
-void simExtrasStop(void);
+        SerialConnection(const char * portname, int baudrate=9600, bool blocking=true, int parity=0);
 
-// Implemented in v_repExtHackflight.cpp
-void errorDialog(char * message);
+        bool openConnection(void);
 
+        int bytesAvailable(void);
+
+        int readBytes(char * buf, int size);
+
+        int writeBytes(char * buf, int size);
+
+        void closeConnection(void);
+
+    private:
+
+        int fd;
+        char portname[100];
+        int baudrate;
+        bool blocking;
+        int parity;
+
+};

@@ -299,6 +299,21 @@ void VrepSimBoard::normalizeV(float src[3], float dest[3])
     }
 }
 
+uint8_t VrepSimBoard::serialAvailableBytes(void)
+{
+	return 0;
+}
+
+uint8_t VrepSimBoard::serialReadByte(void)
+{
+	return 0;
+}
+
+void VrepSimBoard::serialWriteByte(uint8_t c)
+{
+	(void)c;
+}
+
 
 } // namespace hf
 
@@ -396,7 +411,7 @@ void LUA_START_CALLBACK(SScriptCallBack* cb)
     controller = controllerInit();
 
     // Do any extra initialization needed
-    simExtrasStart();
+    //simExtrasStart();
 
     // Now we're ready
     ready = true;
@@ -485,7 +500,7 @@ void LUA_UPDATE_CALLBACK(SScriptCallBack* cb)
     micros += (uint64_t)(1e6 * timestep);
 
     // Do any extra update needed
-    simExtrasUpdate();
+    //simExtrasUpdate();
 
     const float tsigns[4] = {+1, -1, -1, +1};
 	const int propDirections[4] = {-1,+1,+1,-1};
@@ -558,7 +573,7 @@ void LUA_STOP_CALLBACK(SScriptCallBack* cb)
     hideToastDialog();
 
     // Do any extra shutdown needed
-    simExtrasStop();
+    //simExtrasStop();
 
     // Return success to V-REP
     CScriptFunctionData D;
@@ -666,7 +681,7 @@ VREP_DLLEXPORT void* v_repMessage(int message, int * auxiliaryData, void * custo
         return NULL;
 
     // Handle messages mission-specifically
-    simExtrasMessage(message, auxiliaryData, customData);
+    //simExtrasMessage(message, auxiliaryData, customData);
 
     int errorModeSaved;
     simGetIntegerParameter(sim_intparam_error_report_mode,&errorModeSaved);
