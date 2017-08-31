@@ -1,7 +1,5 @@
 # Running Hackflight-Sim in the V-REP simulator
 
-<img src="hackflight.png">
-
 <b>Quickstart, Windows</b>
 
 <ol>
