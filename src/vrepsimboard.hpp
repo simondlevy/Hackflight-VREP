@@ -36,6 +36,7 @@ namespace hf {
             virtual const    Config& getConfig() override;
             virtual void     ledSet(uint8_t id, bool is_on, float max_brightness)  override;
             virtual uint64_t getMicros() override;
+            virtual void     rcInit(void) override;
             virtual bool     rcUseSerial(void) override;
             virtual uint16_t rcReadChannel(uint8_t chan) override;
             virtual uint8_t  serialAvailableBytes(void) override;

@@ -249,6 +249,10 @@ uint64_t VrepSimBoard::getMicros()
     return micros; 
 }
 
+void VrepSimBoard::rcInit(void)
+{
+}
+
 bool VrepSimBoard::rcUseSerial(void)
 {
     return true;
