@@ -1,5 +1,5 @@
 /*
-   posix.hpp : POSIX (Linux, OS X) API for Hackflight simulator plugin
+   posix.hpp : POSIX API for Hackflight simulator plugin
 
    Copyright (C) Simon D. Levy, Matt Lubas, and Julio Hidalgo Lopez 2016
 

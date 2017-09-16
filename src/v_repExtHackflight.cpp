@@ -261,10 +261,10 @@ bool VrepSimBoard::rcUseSerial(void)
 uint16_t VrepSimBoard::rcReadChannel(uint8_t chan)
 {
     // Special handling for throttle
-    float demand = (chan == 3) ? throttleDemand : demands[chan];
+    float demand = (chan == 0) ? throttleDemand : demands[chan];
 
     // Special handling for pitch, roll on PS3, XBOX360
-    if (chan < 2) {
+    if (chan == 1 || chan == 2) {
         if (controller == PS3)
             demand /= 2;
         if (controller == XBOX360)
@@ -409,7 +409,7 @@ void LUA_START_CALLBACK(SScriptCallBack* cb)
     throttleDemand = -1;
 
     // For safety, all controllers start at minimum throttle, aux switch off
-    demands[3] = -1;
+    demands[0] = -1;
 	demands[4] = -1;
 
     // Each input device has its own axis and button mappings
@@ -491,14 +491,14 @@ void LUA_UPDATE_CALLBACK(SScriptCallBack* cb)
 	switch (controller) {
 	case PS3:
 	case XBOX360:
-        throttleDemand += demands[3] * SPRINGY_THROTTLE_INC;     
+        throttleDemand += demands[0] * SPRINGY_THROTTLE_INC;     
         if (throttleDemand < -1)
             throttleDemand = -1;
         if (throttleDemand > 1)
             throttleDemand = 1;
 		break;
 	default:
-        throttleDemand = demands[3];
+        throttleDemand = demands[0];
 	}
 
     // Increment microsecond count

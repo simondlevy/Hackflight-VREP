@@ -93,9 +93,9 @@
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\include;C:\Users\levys\Desktop\Hackflight\include;C:\Users\levys\Desktop\Hackflight\common;C:\Users\levys\Desktop\Hackflight-VREP\src;$(IncludePath)</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\levys\Desktop\hackflight\boards\mw32;C:\Users\levys\Desktop\hackflight\include;C:\Users\levys\Desktop\hackflight\common;C:\Users\levys\Desktop\hackflight\sim\outdoors;C:\Users\levys\Desktop\hackflight\sim;C:\Users\levys\Desktop\hackflight\firmware;C:\Program Files %28x86%29\V-REP3\V-REP_PRO_EDU\programming\include;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\levys\Desktop\hackflight\common;C:\Users\levys\Desktop\hackflight\sim\outdoors;C:\Users\levys\Desktop\hackflight\firmware;C:\Users\levys\Desktop\hackflight\sim;C:\Program Files %28x86%29\V-REP3\V-REP_PRO_EDU\programming\include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\levys\Desktop\Hackflight\include;C:\Users\levys\Desktop\hackflight\sim\outdoors;C:\Program Files %28x86%29\V-REP3\V-REP_PRO_EDU\programming\include;$(IncludePath)</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\levys\Desktop\hackflight\common;C:\Users\levys\Desktop\hackflight\sim\outdoors;C:\Users\levys\Desktop\hackflight\firmware;C:\Users\levys\Desktop\hackflight\sim;C:\Program Files %28x86%29\V-REP3\V-REP_PRO_EDU\programming\include;$(IncludePath)</IncludePath>
-    <ExecutablePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\levys\Desktop\hackflight\firmware;$(ExecutablePath)</ExecutablePath>
+    <ExecutablePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ExecutablePath)</ExecutablePath>
     <ExecutablePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\levys\Desktop\hackflight\firmware;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

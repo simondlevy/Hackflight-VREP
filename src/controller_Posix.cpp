@@ -1,5 +1,5 @@
 /*
-   posix.cpp : POSIX (Linux, OS X) support for Hackflight-VREP simulator plugin
+   posix.cpp : POSIX support for Hackflight-VREP simulator plugin
 
    Copyright (C) Simon D. Levy, Matt Lubas, and Julio Hidalgo Lopez 2016
 

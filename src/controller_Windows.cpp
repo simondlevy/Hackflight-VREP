@@ -25,6 +25,8 @@
 
 #include <conio.h>
 
+#include <stdio.h>
+
 // Adapted from http://olek.matthewm.com.pl//courses/ee-ces/examples/02_JOYSTICK_WIN32.C.HTML
 
 controller_t controllerInit(void)
@@ -93,17 +95,16 @@ void controllerRead(controller_t controller, float * demands)
                 joyState.dwUpos, joyState.dwVpos, joyState.dwRpos,
                 joyState.dwButtons);
     */
-    
 
     // Handle each controller differently
     switch (controller) {
 
         case TARANIS:
-            demands[0] =  -joynorm(joyState.dwXpos);			// roll
-            demands[1] =  -joynorm(joyState.dwYpos);			// pitch
-            demands[2] =   joynorm(joyState.dwZpos);			// yaw
-            demands[3] =   joynorm(joyState.dwVpos);			// throttle        
-            demands[4] =   joynorm(joyState.dwRpos);			// aux switch (from channel 6)
+            demands[0] =   joynorm(joyState.dwXpos);			// throttle        
+            demands[1] =  -joynorm(joyState.dwYpos);			// roll
+            demands[2] =  -joynorm(joyState.dwZpos);			// pitch
+            demands[3] =   joynorm(joyState.dwVpos);			// yaw
+            demands[4] =   -1;//joynorm(joyState.dwRpos);			// aux switch
             break;
 
         case SPEKTRUM:
