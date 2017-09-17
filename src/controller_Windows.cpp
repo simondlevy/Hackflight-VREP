@@ -113,7 +113,15 @@ void controllerRead(controller_t controller, float * demands)
             buttonToAuxDemand(demands, joyState.dwButtons);    // aux switch
             break;
 
-        case SPEKTRUM:
+        case XBOX360:
+            demands[0] = -joynorm(joyState.dwYpos);            // throttle
+            demands[1] = -joynorm(joyState.dwUpos);            // roll
+            demands[2] =  joynorm(joyState.dwRpos);            // pitch
+            demands[3] =  joynorm(joyState.dwXpos);            // yaw
+            buttonToAuxDemand(demands, joyState.dwButtons); // aux switch
+            break;
+
+         case SPEKTRUM:
             demands[0] =  joynorm(joyState.dwYpos);        // roll
             demands[1] =  joynorm(joyState.dwZpos);        // pitch
             demands[2] =  joynorm(joyState.dwRpos);        // yaw
@@ -129,15 +137,7 @@ void controllerRead(controller_t controller, float * demands)
             buttonToAuxDemand(demands, joyState.dwButtons); // aux switch
             break;
 
-        case XBOX360:
-            demands[0] =  joynorm(joyState.dwUpos);            // roll
-            demands[1] = -joynorm(joyState.dwRpos);            // pitch
-            demands[2] =  joynorm(joyState.dwXpos);            // yaw
-            demands[3] = -joynorm(joyState.dwYpos);            // throttle
-            buttonToAuxDemand(demands, joyState.dwButtons); // aux switch
-            break;
-
-        default:
+       default:
             if (_kbhit()) {
                 char c = _getch();
                 char keys[8] = {75,77, 80,72, 82,13, 81,73};
