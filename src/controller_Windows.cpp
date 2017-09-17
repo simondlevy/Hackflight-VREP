@@ -89,12 +89,10 @@ void controllerRead(controller_t controller, float * demands)
     joyState.dwFlags=JOY_RETURNALL | JOY_RETURNPOVCTS | JOY_RETURNCENTERED | JOY_USEDEADZONE;
     joyGetPosEx(JOYSTICKID1, &joyState);
     
-    /*
-    printf("X:%d Y:%d Z:%d   U:%d V:%d R:%d  b:%d\n", 
+    printf("X:%d Y:%d Z:%d   R:%d U:%d V:%d  b:%d\n", 
                 joyState.dwXpos, joyState.dwYpos, joyState.dwZpos, 
-                joyState.dwUpos, joyState.dwVpos, joyState.dwRpos,
+                joyState.dwRpos, joyState.dwUpos, joyState.dwVpos,
                 joyState.dwButtons);
-    */
 
     // Handle each controller differently
     switch (controller) {
@@ -104,7 +102,15 @@ void controllerRead(controller_t controller, float * demands)
             demands[1] =  -joynorm(joyState.dwYpos);			// roll
             demands[2] =  -joynorm(joyState.dwZpos);			// pitch
             demands[3] =   joynorm(joyState.dwVpos);			// yaw
-            demands[4] =   -1;//joynorm(joyState.dwRpos);			// aux switch
+            demands[4] =   -1;			                        // aux switch
+            break;
+
+        case PS3:
+            demands[0] = -joynorm(joyState.dwYpos);            // throttle
+            demands[1] = -joynorm(joyState.dwZpos);            // roll
+            demands[2] =  joynorm(joyState.dwRpos);            // pitch
+            demands[3] =  joynorm(joyState.dwXpos);            // yaw
+            buttonToAuxDemand(demands, joyState.dwButtons);    // aux switch
             break;
 
         case SPEKTRUM:
@@ -120,14 +126,6 @@ void controllerRead(controller_t controller, float * demands)
             demands[1] = -joynorm(joyState.dwYpos);            // pitch
             demands[2] =  joynorm(joyState.dwRpos);            // yaw
             demands[3] = -joynorm(joyState.dwZpos);            // throttle
-            buttonToAuxDemand(demands, joyState.dwButtons); // aux switch
-            break;
-
-        case PS3:
-            demands[0] = -joynorm(joyState.dwZpos);            // roll
-            demands[1] =  joynorm(joyState.dwRpos);            // pitch
-            demands[2] =  joynorm(joyState.dwXpos);            // yaw
-            demands[3] = -joynorm(joyState.dwYpos);            // throttle
             buttonToAuxDemand(demands, joyState.dwButtons); // aux switch
             break;
 
