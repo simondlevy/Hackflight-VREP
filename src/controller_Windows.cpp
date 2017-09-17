@@ -121,20 +121,20 @@ void controllerRead(controller_t controller, float * demands)
             buttonToAuxDemand(demands, joyState.dwButtons); // aux switch
             break;
 
+        case EXTREME3D:
+            demands[0] = -joynorm(joyState.dwZpos);            // throttle
+            demands[1] = -joynorm(joyState.dwXpos);            // roll
+            demands[2] =  joynorm(joyState.dwYpos);            // pitch
+            demands[3] =  joynorm(joyState.dwRpos);            // yaw
+            buttonToAuxDemand(demands, joyState.dwButtons); // aux switch
+            break;
+
          case SPEKTRUM:
             demands[0] =  joynorm(joyState.dwYpos);        // roll
             demands[1] =  joynorm(joyState.dwZpos);        // pitch
             demands[2] =  joynorm(joyState.dwRpos);        // yaw
             demands[3] =  joynorm(joyState.dwXpos);        // throttle        
             demands[4] =  joynorm(joyState.dwVpos);        // aux switch        
-            break;
-
-        case EXTREME3D:
-            demands[0] =  joynorm(joyState.dwXpos);            // roll
-            demands[1] = -joynorm(joyState.dwYpos);            // pitch
-            demands[2] =  joynorm(joyState.dwRpos);            // yaw
-            demands[3] = -joynorm(joyState.dwZpos);            // throttle
-            buttonToAuxDemand(demands, joyState.dwButtons); // aux switch
             break;
 
        default:
