@@ -188,6 +188,11 @@ const Config& VrepSimBoard::getConfig()
     return config;
 }
 
+bool VrepSimBoard::skipArming(void)
+{
+    return true;
+}
+
 void VrepSimBoard::imuGetEuler(float eulerAnglesRadians[3])
 {
     eulerAnglesRadians[0] = -eulerAngles[1];

@@ -45,6 +45,7 @@ namespace hf {
             virtual void     debug(char * msg) override;
             virtual void     writeMotor(uint8_t index, uint16_t value) override;
             virtual void     delayMilliseconds(uint32_t msec) override;
+            virtual bool     skipArming(void) override;
 
     private: // types
 
