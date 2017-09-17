@@ -18,16 +18,16 @@ larger size.
 to the V-REP folder where the other DLLs are. On my computer this is
 <b>C:\Program FIles\V-REP3\V-REP_PRO_EDU</b>.
 4. Plug in your R/C transmitter, joystick, or game controller. Currently supported:
-* FrkSky Taranis transmitter with USB cable
-* Logitch Extreme 3D Pro joystick
-* Nyko Core Controller for PS3
-* XBOX360 controller
+    * FrkSky Taranis transmitter with USB cable
+    * Logitch Extreme 3D Pro joystick
+    * Nyko Core Controller for PS3
+    * XBOX360 controller
 5. In the <b>outdoors</b> folder, ouble-click on the hackflight scene <b>hackflight.ttt</b> 
 to launch V-REP.
 6. Press the triangular play button at the top of V-REP.
-* If V-REP asks you whether you really want to run the simulation with a dt=10msec
+    * If V-REP asks you whether you really want to run the simulation with a dt=10msec
 update rate, agree.  You may have to do this three times.
-* If the vehicle takes off immediately, make sure your throttle is down by
+    * If the vehicle takes off immediately, make sure your throttle is down by
 raising it slightly and then lowering it all the way down.  You may also need to wiggle
 the sticks a little at first for the simulator to detect them.  Inexpensive clones of 
 controllers like the XBOX360 tend to give a noisy signal (nonzero values when
