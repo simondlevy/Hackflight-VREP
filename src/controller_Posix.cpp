@@ -106,12 +106,12 @@ controller_t posixControllerInit(char * name, const char * ps3name)
     }
     else if (strstr(name, "Extreme 3D")) {
         controller = EXTREME3D;
-        axismap[0] = 0;
-        axismap[1] = 1;
-        axismap[2] = 2;
-        axismap[3] = 3;
+        axismap[0] = 3;
+        axismap[1] = 0;
+        axismap[2] = 1;
+        axismap[3] = 2;
+        axisdir[0] = -1;
         axisdir[1] = -1;
-        axisdir[3] = -1;
     }
     else if (strstr(name, "Generic X-Box pad")) {
         controller = XBOX360;
