@@ -71,15 +71,13 @@ Linux users can experiment with a simulated &ldquo;companion board&rdquo; comput
 simple machine-vision algorithm.  This project resides in <b>hackflight/sim/vision</b>.
 Before trying it out you will need to install OpenCV:  
 
-<p>
 
 On Ubuntu:
-<pre>
+```
   sudo apt install python-opencv
   sudo apt install libopencv-dev
-</pre>
+```
 
-<p>
 
 On Fedora:
 
