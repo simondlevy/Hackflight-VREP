@@ -37,36 +37,34 @@ centered).
 
 ## Quickstart, Linux
 
-<ol>
-<li> Install <a href="http://www.coppeliarobotics.com/downloads.html">V-REP</a>.
-<p><li>Clone the hackflight repository.
-<p><li>Drag the plugin <b>scenes/outdoors/x64/Release/libv_repExtHackflight.so</b>
+1. Install <a href="http://www.coppeliarobotics.com/downloads.html">V-REP</a>.
+2. Clone the hackflight repository.
+3. Drag the plugin <b>scenes/outdoors/x64/Release/libv_repExtHackflight.so</b>
 to the V-REP folder where the other plugins are. On my computer this is
 <b>~/Software//V-REP_PRO_EDU_V3_3_1_64_Linux</b>.
-<p><li>Plug in your R/C transmitter, joystick, or game controller (see above).  On Linux you can
+4. Plug in your R/C transmitter, joystick, or game controller (see above).  On Linux you can
 also go wireless, using a Teensy 3.2 micrcontroller with Spektrum satellite (e.g., Lemon RX) attached.
 The Arduino sketch supporting this is in the <b>dsmdongle</b> directory in the main part of the repository.
 The Linux version checks for this setup by attempting to open <tt>/dev/ttyACM0</tt>.  So you may need
 to modify that setting in <b>controller_Linux.cpp</b>.
-<p><li> Open a terminal window, navigate to the V-REP folder, and do <b>./vrep.sh</b> to launch V-REP.
-<p><li> Follow steps 6-7 above.
-</ol>
+5. Open a terminal window, navigate to the V-REP folder, and do <b>./vrep.sh</b> to launch V-REP.
+6. Follow steps 6-7 for Windows above.
 
-<b>Developing for Windows</b>
+## Developing for Windows
 
 You will need Visual Studio 2015.  After cloning the hackflight repository,
 double-click on <b>v_repExtHackflight.vcxproj</b> to launch the project.
 Building for Release will create the DLL file, which you can then move into the
 V-REP folder as in the Windows quickstart above.  
 
-<b>Developing for Linux</b>
+## Developing for Linux
 
 After cloning the Hackflight <a href="https://github.com/simdlevy/Hackflight">repository</a>, 
 edit the <tt>VREP\_DIR</tt> variable in the Makefile in this directory
 (<b>outdoors</b>) to reflect where you installed V-REP.  Typing <b>make
 install</b> should then build the plugin and install it the appropriate place.
 
-<b>Companion-Board Simulation</b>
+## Companion-Board Simulation
 
 Linux users can experiment with a simulated &ldquo;companion board&rdquo; computer
 (Raspberry Pi, ODROID, BeagleBone) that uses Python and OpenCV to illustrate a 
