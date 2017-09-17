@@ -97,12 +97,12 @@ controller_t posixControllerInit(char * name, const char * ps3name)
     }
     else if (strstr(name, ps3name)) {
         controller = PS3;
-        axismap[0] = 2;
-        axismap[1] = 3;
-        axismap[2] = 0;
-        axismap[3] = 1;
+        axismap[0] = 1;
+        axismap[1] = 2;
+        axismap[2] = 3;
+        axismap[3] = 0;
         axisdir[0] = -1;
-        axisdir[3] = -1;
+        axisdir[1] = -1;
     }
     else if (strstr(name, "Extreme 3D")) {
         controller = EXTREME3D;
