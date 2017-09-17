@@ -115,12 +115,12 @@ controller_t posixControllerInit(char * name, const char * ps3name)
     }
     else if (strstr(name, "Generic X-Box pad")) {
         controller = XBOX360;
-        axismap[0] = 3; //roll
-        axismap[1] = 4; //pitch
-        axismap[2] = 0; //yaw
-        axismap[3] = 1; //throttle
+        axismap[0] = 1; 
+        axismap[1] = 3; 
+        axismap[2] = 4; 
+        axismap[3] = 0; 
+        axisdir[0] = -1;
         axisdir[1] = -1;
-        axisdir[3] = -1;
     }
     else {
         printf("Uknown controller: %s\n", name);
@@ -140,8 +140,6 @@ void posixControllerGrabAxis(controller_t controller, float * demands, int numbe
             demands[k] = axisdir[k] * value / 32767.;
         }
     }
-
-    printf("%f %f %f %f\n", demands[0], demands[1], demands[2], demands[3]);
 }
 
 void posixControllerGrabButton(float * demands, int number)
