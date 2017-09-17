@@ -46,10 +46,6 @@ controller_t controllerInit(void)
                 controller = TARANIS;
                 break;
 
-            case 1783:
-                controller = SPEKTRUM;
-                break;
-
             case 1133:
                 controller = EXTREME3D;
                 break;
@@ -127,14 +123,6 @@ void controllerRead(controller_t controller, float * demands)
             demands[2] =  joynorm(joyState.dwYpos);            // pitch
             demands[3] =  joynorm(joyState.dwRpos);            // yaw
             buttonToAuxDemand(demands, joyState.dwButtons); // aux switch
-            break;
-
-         case SPEKTRUM:
-            demands[0] =  joynorm(joyState.dwYpos);        // roll
-            demands[1] =  joynorm(joyState.dwZpos);        // pitch
-            demands[2] =  joynorm(joyState.dwRpos);        // yaw
-            demands[3] =  joynorm(joyState.dwXpos);        // throttle        
-            demands[4] =  joynorm(joyState.dwVpos);        // aux switch        
             break;
 
        default:

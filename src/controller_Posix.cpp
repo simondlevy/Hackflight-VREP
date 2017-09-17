@@ -94,14 +94,6 @@ controller_t posixControllerInit(char * name, const char * ps3name)
         axisdir[0] = -1;
         axisdir[1] = -1;
     }
-    else if (strstr(name, "PPM TO USB Adapter")) {
-        controller = SPEKTRUM;
-        axismap[0] = 1;
-        axismap[1] = 2;
-        axismap[2] = 5;
-        axismap[3] = 0;
-        axismap[4] = 4;
-    }
     else if (strstr(name, ps3name)) {
         controller = PS3;
         axismap[0] = 2;
@@ -139,7 +131,7 @@ controller_t posixControllerInit(char * name, const char * ps3name)
 void posixControllerGrabAxis(controller_t controller, float * demands, int number, int value)
 {
     // Look at all five axes for R/C transmitters, first four for other controllers
-    int maxaxis = (controller == TARANIS || controller == SPEKTRUM) ? 5 : 4;
+    int maxaxis = (controller == TARANIS) ? 5 : 4;
 
     // Grab demands from axes
     for (int k=0; k<maxaxis; ++k)

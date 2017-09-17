@@ -21,7 +21,6 @@ to the V-REP folder where the other DLLs are. On my computer this is
 <p><li>Plug in your R/C transmitter, joystick, or game controller. Currently supported:
 <p><ul>
 <li> FrkSky Taranis transmitter with USB cable
-<p><li>Spektrum DX-8 transmitter with GWS adapter cable (unfortunately no longer sold)
 <p><li>Logitch Extreme 3D Pro joystick
 <p><li>Nyko Core Controller for PS3
 <p><li>XBOX360 controller
