@@ -31,12 +31,13 @@
 
 controller_t controllerInit(void)
 { 
-    controller_t controller = KEYBOARD;
+    // Default to PS3
+    controller_t controller = PS3;
 
-   JOYCAPS joycaps;
-   if (joyGetDevCaps(JOYSTICKID1, &joycaps, sizeof(joycaps))==JOYERR_NOERROR) {
+    JOYCAPS joycaps;
+    if (joyGetDevCaps(JOYSTICKID1, &joycaps, sizeof(joycaps))==JOYERR_NOERROR) {
 
-       switch (joycaps.wMid) {
+        switch (joycaps.wMid) {
 
             case 3727:
                 controller = PS3;
@@ -54,7 +55,7 @@ controller_t controllerInit(void)
                 controller = XBOX360;
                 break;
         }
-   }
+    }
 
     return controller;
 }
@@ -84,11 +85,13 @@ void controllerRead(controller_t controller, float * demands)
     joyState.dwSize=sizeof(joyState);
     joyState.dwFlags=JOY_RETURNALL | JOY_RETURNPOVCTS | JOY_RETURNCENTERED | JOY_USEDEADZONE;
     joyGetPosEx(JOYSTICKID1, &joyState);
-    
-    printf("X:%d Y:%d Z:%d   R:%d U:%d V:%d  b:%d\n", 
-                joyState.dwXpos, joyState.dwYpos, joyState.dwZpos, 
-                joyState.dwRpos, joyState.dwUpos, joyState.dwVpos,
-                joyState.dwButtons);
+
+    /*
+       printf("X:%d Y:%d Z:%d   R:%d U:%d V:%d  b:%d\n", 
+       joyState.dwXpos, joyState.dwYpos, joyState.dwZpos, 
+       joyState.dwRpos, joyState.dwUpos, joyState.dwVpos,
+       joyState.dwButtons);
+     */
 
     // Handle each controller differently
     switch (controller) {
@@ -124,13 +127,6 @@ void controllerRead(controller_t controller, float * demands)
             demands[3] =  joynorm(joyState.dwRpos);            // yaw
             buttonToAuxDemand(demands, joyState.dwButtons); // aux switch
             break;
-
-       default:
-            if (_kbhit()) {
-                char c = _getch();
-                char keys[8] = {75,77, 80,72, 82,13, 81,73};
-                kbRespond(c, keys);
-            }
     }
 }
 

@@ -24,10 +24,6 @@ to the V-REP folder where the other DLLs are. On my computer this is
 <p><li>Logitch Extreme 3D Pro joystick
 <p><li>Nyko Core Controller for PS3
 <p><li>XBOX360 controller
-<p><li>Keyboard, using the Microsoft Flight Controller numeric keypad 
-<a href="http://www.flightsimbooks.com/flightsimhandbook/keyboardcontrols.php">mappings</a>,
-if none of the above are connected: not recommended because it requires you 
-to foreground the console
 </ul>
 
 <p><li> In the <b>outdoors</b> folder, ouble-click on the hackflight scene <b>hackflight.ttt</b> 

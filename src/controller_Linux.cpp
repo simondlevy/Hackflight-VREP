@@ -79,9 +79,6 @@ static void * dsmthread(void * v)
 
 controller_t controllerInit(void)
 { 
-    // Default to keyboard controller
-    controller_t controller = KEYBOARD;
-
     // First try to open wired joystick device
     if ((joyfd=open(JOY_DEV, O_RDONLY)) > 0) {
 
@@ -105,12 +102,6 @@ controller_t controllerInit(void)
         pthread_create(&thread, NULL, dsmthread, NULL);
         controller = DSM;
     }
-
-    // No joystick or dongle detected; use keyboard as fallback
-    else  {
-        posixKbInit();
-    }
-
 
     return controller;
 } 
@@ -140,12 +131,6 @@ void controllerRead(controller_t controller, float * demands)
         for (int k=0; k<5; ++k)
             demands[k] = (dsmvals[k] - 1500) / 500.;
     }
-
-    // No joystick or DSM; use keyboard
-    else  {
-        char keys[8] = {68, 67, 66, 65, 50, 10, 54, 53};
-        posixKbGrab(keys);
-    }
 }
 
 void controllerClose(void)
@@ -157,7 +142,4 @@ void controllerClose(void)
 
     else if (dsmfd > 0)
         close(dsmfd);
-
-    else // reset keyboard if no joystick or DSM dongle
-        posixKbClose();
 }

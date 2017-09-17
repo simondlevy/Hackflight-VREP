@@ -62,41 +62,6 @@ static controller_t controller;
 // Stick demands from controller
 static float demands[5];
 
-// Keyboard support for any OS
-static const float KEYBOARD_INC = .01f;
-static void kbchange(int index, int dir)
-{
-    demands[index] += dir*KEYBOARD_INC;
-
-    if (demands[index] > 1)
-        demands[index] = 1;
-
-    if (demands[index] < -1)
-        demands[index] = -1;
-}
-
-
-static void kbincrement(int index)
-{
-    kbchange(index, +1);
-}
-
-static void kbdecrement(int index)
-{
-    kbchange(index, -1);
-}
-
-void kbRespond(char key, char keys[8]) 
-{
-	for (int k=0; k<8; ++k)
-		if (key == keys[k]) {
-			if (k%2)
-				kbincrement(k/2);
-			else
-				kbdecrement(k/2);
-        }
-}
-
 #define CONCAT(x,y,z) x y z
 #define strConCat(x,y,z)	CONCAT(x,y,z)
 
@@ -655,29 +620,6 @@ VREP_DLLEXPORT void v_repEnd()
 { // This is called just once, at the end of V-REP
     unloadVrepLibrary(vrepLib); // release the library
 }
-
-#ifdef CONTROLLER_KEYBOARD
-static void change(int index, int dir)
-{
-    demands[index] += dir*KEYBOARD_INC;
-
-    if (demands[index] > 1)
-        demands[index] = 1;
-
-    if (demands[index] < -1)
-        demands[index] = -1;
-}
-
-static void increment(int index) 
-{
-    change(index, +1);
-}
-
-static void kbdecrement(int index) 
-{
-    change(index, -1);
-}
-#endif
 
 VREP_DLLEXPORT void* v_repMessage(int message, int * auxiliaryData, void * customData, int * replyData)
 {
