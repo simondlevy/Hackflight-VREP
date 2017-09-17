@@ -12,37 +12,30 @@ larger size.
 
 ## Quickstart, Windows
 
-<ol>
-<li> Install <a href="http://www.coppeliarobotics.com/downloads.html">V-REP</a>.
-<p><li>Clone the hackflight repository.
-<p><li>Drag the plugin <b>scenes\outdoors\x64\Release\v_repExtHackflight.dll</b>
+1. Install <a href="http://www.coppeliarobotics.com/downloads.html">V-REP</a>.
+2. Clone the hackflight repository.
+3. Drag the plugin <b>scenes\outdoors\x64\Release\v_repExtHackflight.dll</b>
 to the V-REP folder where the other DLLs are. On my computer this is
 <b>C:\Program FIles\V-REP3\V-REP_PRO_EDU</b>.
-<p><li>Plug in your R/C transmitter, joystick, or game controller. Currently supported:
-<p><ul>
-<li> FrkSky Taranis transmitter with USB cable
-<p><li>Logitch Extreme 3D Pro joystick
-<p><li>Nyko Core Controller for PS3
-<p><li>XBOX360 controller
-</ul>
-
-<p><li> In the <b>outdoors</b> folder, ouble-click on the hackflight scene <b>hackflight.ttt</b> 
+4. Plug in your R/C transmitter, joystick, or game controller. Currently supported:
+* FrkSky Taranis transmitter with USB cable
+* Logitch Extreme 3D Pro joystick
+* Nyko Core Controller for PS3
+* XBOX360 controller
+5. In the <b>outdoors</b> folder, ouble-click on the hackflight scene <b>hackflight.ttt</b> 
 to launch V-REP.
-<p><li> Press the triangular play button at the top of V-REP.
-<p><ul>
-<p><li> If V-REP asks you whether you really want to run the simulation with a dt=10msec
+6. Press the triangular play button at the top of V-REP.
+* If V-REP asks you whether you really want to run the simulation with a dt=10msec
 update rate, agree.  You may have to do this three times.
-<p><li>If the vehicle takes off immediately, make sure your throttle is down by
+* If the vehicle takes off immediately, make sure your throttle is down by
 raising it slightly and then lowering it all the way down.  You may also need to wiggle
 the sticks a little at first for the simulator to detect them.  Inexpensive clones of 
 controllers like the XBOX360 tend to give a noisy signal (nonzero values when
 centered).
-</ul>
-<p><li>Press the square stop button at the top of V-REP to stop the simulation.
-</ol>
+7. Press the square stop button at the top of V-REP to stop the simulation.
 
 
-<b>Quickstart, Linux</b>
+## Quickstart, Linux
 
 <ol>
 <li> Install <a href="http://www.coppeliarobotics.com/downloads.html">V-REP</a>.
