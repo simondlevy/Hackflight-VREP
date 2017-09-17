@@ -8,7 +8,7 @@ V-REP robotics simulator.  Originally part of the Hackflight repository,
 Hackflight-VREP was broken off into its own repository because of its much
 larger size.
 
-<b>I am only maintaining this simulator for 64-bit platforms.</b>
+<b>I am only maintaining this simulator for Windows and Linux 64-bit platforms.</b>
 
 ## Quickstart, Windows
 
