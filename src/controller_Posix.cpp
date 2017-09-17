@@ -79,7 +79,8 @@ void posixKbClose(void)
 
 controller_t posixControllerInit(char * name, const char * ps3name)
 {
-    controller_t controller = KEYBOARD;
+    // Deafult to PS3
+    controller_t controller = PS3;
 
     for (int k=0; k<6; ++k)
         axisdir[k] = +1;
@@ -91,8 +92,8 @@ controller_t posixControllerInit(char * name, const char * ps3name)
         axismap[2] = 2;
         axismap[3] = 3;
         axismap[4] = 4;
-        axisdir[0] = -1;
         axisdir[1] = -1;
+        axisdir[2] = -1;
     }
     else if (strstr(name, ps3name)) {
         controller = PS3;
@@ -134,10 +135,13 @@ void posixControllerGrabAxis(controller_t controller, float * demands, int numbe
     int maxaxis = (controller == TARANIS) ? 5 : 4;
 
     // Grab demands from axes
-    for (int k=0; k<maxaxis; ++k)
+    for (int k=0; k<maxaxis; ++k) {
         if (number == axismap[k]) {
             demands[k] = axisdir[k] * value / 32767.;
         }
+    }
+
+    printf("%f %f %f %f\n", demands[0], demands[1], demands[2], demands[3]);
 }
 
 void posixControllerGrabButton(float * demands, int number)

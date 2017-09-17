@@ -47,7 +47,7 @@ $(PLUGIN): *.cpp ../../src/*.cpp ../../src/*.hpp $(HACKFLIGHT_DIR)/include/*.hpp
 	g++ $(CFLAGS) -c $(COMMON)/scriptFunctionDataItem.cpp
 	g++ $(CFLAGS) -c $(COMMON)/v_repLib.cpp
 	g++ $(CFLAGS) -c ../../src/MSPPG.cpp
-	g++ *.o -o libv_repExtHackflight.so -lpthread -shared $(JOYLIB) -lmsppg
+	g++ *.o -o libv_repExtHackflight.so -lpthread -shared $(JOYLIB)
 
 install: $(PLUGIN)
 	cp $(PLUGIN) $(VREP_LIBDIR)
