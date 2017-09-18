@@ -18,10 +18,12 @@ larger size.
 to the V-REP folder where the other DLLs are. On my computer this is
 <b>C:\Program FIles\V-REP3\V-REP_PRO_EDU</b>.
 4. Plug in your R/C transmitter, joystick, or game controller. Currently supported:
+
     * FrkSky Taranis transmitter with USB cable
     * Logitch Extreme 3D Pro joystick
-    * Nyko Core Controller for PS3
+    * PS3 controller
     * XBOX360 controller
+
 5. In the <b>outdoors</b> folder, ouble-click on the hackflight scene <b>hackflight.ttt</b> 
 to launch V-REP.
 6. Press the triangular play button at the top of V-REP.
