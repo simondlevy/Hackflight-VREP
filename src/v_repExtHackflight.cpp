@@ -145,9 +145,6 @@ static LED leds[2];
 
 #include "vrepsimboard.hpp"
 
-static uint16_t pwmMin;
-static uint16_t pwmMax;
-
 namespace hf {
 
 void VrepSimBoard::init(void)
@@ -166,24 +163,12 @@ void VrepSimBoard::init(void)
     leds[0].init(greenLedHandle, 0, 1, 0);
     leds[1].init(redLedHandle, 1, 0, 0);
 
-    pwmMin = config.pwm.min;
-    pwmMax = config.pwm.max;
 }
 
 const Config& VrepSimBoard::getConfig()
 {
     // Loop timing overrides
     config.loop.imuLoopMicro       = 10000;    // VREP's shortest simulation period
-
-    // PIDs
-    config.stabilize.levelP          = 0.10f;
-
-    config.stabilize.ratePitchrollP  = 0.125f;
-    config.stabilize.ratePitchrollI  = 0.05f;
-    config.stabilize.ratePitchrollD  = 0.01f;
-
-    config.stabilize.yawP            = 0.1f;
-    config.stabilize.yawI            = 0.05f;
 
     return config;
 }
@@ -217,34 +202,6 @@ void VrepSimBoard::ledSet(uint8_t id, bool is_on, float max_brightness)
 uint64_t VrepSimBoard::getMicros()
 {
     return micros; 
-}
-
-void VrepSimBoard::rcInit(void)
-{
-}
-
-bool VrepSimBoard::rcUseSerial(void)
-{
-    return true;
-}
-
-uint16_t VrepSimBoard::rcReadChannel(uint8_t chan)
-{
-    // Special handling for throttle
-    float demand = (chan == 0) ? throttleDemand : demands[chan];
-
-    // Special handling for pitch, roll on PS3, XBOX360
-    if (chan == 1 || chan == 2) {
-        if (controller == PS3)
-            demand /= 2;
-        if (controller == XBOX360)
-            demand /= 1.5;
-    }
-
-    // Joystick demands are in [-1,+1]
-    int pwm =  (int)(pwmMin + (demand + 1) / 2 * (pwmMax - pwmMin));
-
-    return pwm;
 }
 
 void VrepSimBoard::debug(char * msg)
@@ -292,7 +249,48 @@ void VrepSimBoard::serialWriteByte(uint8_t c)
 
 } // namespace hf
 
-#include <sim_extras.hpp>
+// Receiver implementation ======================================================
+
+#include "vrepsimreceiver.hpp"
+
+namespace hf {
+
+void VrepSimReceiver::begin(void)
+{
+}
+
+bool VrepSimReceiver::useSerial(void)
+{
+    return true;
+}
+
+uint16_t VrepSimReceiver::readChannel(uint8_t chan)
+{
+    // Special handling for throttle
+    float demand = (chan == 0) ? throttleDemand : demands[chan];
+
+    // Special handling for pitch, roll on PS3, XBOX360
+    if (chan == 1 || chan == 2) {
+        if (controller == PS3)
+            demand /= 2;
+        if (controller == XBOX360)
+            demand /= 1.5;
+    }
+
+    // Joystick demands are in [-1,+1]; convert to [1000,2000]
+    uint16_t pwm = (uint16_t)(demand*500 + 1500);
+
+    printf("%d: %d%c", chan+1, pwm, chan==4?'\n':'\t');
+
+    return pwm;
+}
+
+} // namespace hf
+
+// Model implementation ======================================================
+
+#include "vrepsimmodel.hpp"
+
 
 // --------------------------------------------------------------------------------------------------
 
@@ -373,9 +371,9 @@ void LUA_START_CALLBACK(SScriptCallBack* cb)
     CScriptFunctionData D;
 
     // Init Hackflight object
-    h.init(new hf::VrepSimBoard());
+    h.init(new hf::VrepSimBoard(), new hf::VrepSimReceiver(), new hf::VrepSimModel());
 
-    // Need this for throttle on keyboard and PS3
+    // Need this for throttle on PS3
     throttleDemand = -1;
 
     // For safety, all controllers start at minimum throttle, aux switch off

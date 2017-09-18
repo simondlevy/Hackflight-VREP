@@ -91,7 +91,7 @@ void controllerRead(controller_t controller, float * demands)
        joyState.dwXpos, joyState.dwYpos, joyState.dwZpos, 
        joyState.dwRpos, joyState.dwUpos, joyState.dwVpos,
        joyState.dwButtons);
-     */
+    */
 
     // Handle each controller differently
     switch (controller) {

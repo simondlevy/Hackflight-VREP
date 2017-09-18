@@ -52,8 +52,9 @@ to modify that setting in <b>controller_Linux.cpp</b>.
 
 You will need Visual Studio 2015.  After cloning the hackflight repository,
 double-click on <b>v_repExtHackflight.vcxproj</b> to launch the project.
-Building for Release will create the DLL file, which you can then move into the
-V-REP folder as in the Windows quickstart above.  
+Building for Release will create the DLL file and save it to the V-REP folder for you.
+If you run into trouble, make sure that your include and V-REP folders are specified
+correctly in the Project configuration.
 
 ## Developing for Linux
 

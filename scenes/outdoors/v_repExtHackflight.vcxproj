@@ -31,6 +31,7 @@
     <RootNamespace>v_repExtBubbleRob</RootNamespace>
     <Keyword>MFCDLLProj</Keyword>
     <ProjectName>v_repExtHackflight</ProjectName>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -97,6 +98,9 @@
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\levys\Desktop\hackflight\common;C:\Users\levys\Desktop\hackflight\sim\outdoors;C:\Users\levys\Desktop\hackflight\firmware;C:\Users\levys\Desktop\hackflight\sim;C:\Program Files %28x86%29\V-REP3\V-REP_PRO_EDU\programming\include;$(IncludePath)</IncludePath>
     <ExecutablePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ExecutablePath)</ExecutablePath>
     <ExecutablePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\levys\Desktop\hackflight\firmware;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\..\..\..\..\..\Program Files\V-REP3\V-REP_PRO_EDU</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
