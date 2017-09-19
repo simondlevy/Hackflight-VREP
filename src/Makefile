@@ -19,14 +19,14 @@
 #
 
 # Edit this for where you installed Hackflight
-HACKFLIGHT_DIR = $(HOME)/Desktop/Hackflight
+HACKFLIGHT_DIR = $(HOME)/Arduino/libraries/Hackflight
  
 # Edit this for where you installed V-REP
 VREP_DIR_LINUX = $(HOME)/Software/V-REP_PRO_EDU_V3_4_0_Linux
 
 COMMON = $(VREP_DIR)/programming/common/
 CFLAGS = -std=c++11 -Wall -D_SIM \
-		 -I$(VREP_DIR)/programming/include/ -I. -I../../src -I$(HACKFLIGHT_DIR)/include \
+		 -I$(VREP_DIR)/programming/include/ -I. -I../../src -I$(HACKFLIGHT_DIR)/src \
 		 -Wall -fPIC -static
 
 CFLAGS += -I/usr/include/SDL
@@ -39,7 +39,7 @@ ALL = $(PLUGIN)
 
 all: $(ALL)
 
-$(PLUGIN): *.cpp ../../src/*.cpp ../../src/*.hpp $(HACKFLIGHT_DIR)/include/*.hpp 
+$(PLUGIN): *.cpp ../../src/*.cpp ../../src/*.hpp $(HACKFLIGHT_DIR)/src/*.hpp 
 	g++ $(CFLAGS) -c -DVREP_DIR=\"$(VREP_LIBDIR)\" ../../src//v_repExtHackflight.cpp 
 	g++ $(CFLAGS) -c ../../src/controller_Posix.cpp 
 	g++ $(CFLAGS) -c ../../src/controller_Linux.cpp 
