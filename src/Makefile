@@ -24,9 +24,13 @@ HACKFLIGHT_DIR = $(HOME)/Arduino/libraries/Hackflight
 # Edit this for where you installed V-REP
 VREP_DIR_LINUX = $(HOME)/Software/V-REP_PRO_EDU_V3_4_0_Linux
 
+# ----------------------------------------------------------------
+
+CONTROLLER_DIR = $(HACKFLIGHT_DIR)/extras/controller
+
 COMMON = $(VREP_DIR)/programming/common/
 CFLAGS = -std=c++11 -Wall -D_SIM \
-		 -I$(VREP_DIR)/programming/include/ -I. -I../../src -I$(HACKFLIGHT_DIR)/src \
+		 -I$(VREP_DIR)/programming/include/ -I. -I../../src -I$(HACKFLIGHT_DIR)/src -I$(CONTROLLER_DIR) \
 		 -Wall -fPIC -static
 
 CFLAGS += -I/usr/include/SDL
@@ -41,8 +45,8 @@ all: $(ALL)
 
 $(PLUGIN): *.cpp ../../src/*.cpp ../../src/*.hpp $(HACKFLIGHT_DIR)/src/*.hpp 
 	g++ $(CFLAGS) -c -DVREP_DIR=\"$(VREP_LIBDIR)\" ../../src//v_repExtHackflight.cpp 
-	g++ $(CFLAGS) -c ../../src/controller_Posix.cpp 
-	g++ $(CFLAGS) -c ../../src/controller_Linux.cpp 
+	g++ $(CFLAGS) -c $(CONTROLLER_DIR)/controller_Posix.cpp 
+	g++ $(CFLAGS) -c $(CONTROLLER_DIR)/controller_Linux.cpp 
 	g++ $(CFLAGS) -c $(COMMON)/scriptFunctionData.cpp 
 	g++ $(CFLAGS) -c $(COMMON)/scriptFunctionDataItem.cpp
 	g++ $(CFLAGS) -c $(COMMON)/v_repLib.cpp

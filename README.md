@@ -50,6 +50,13 @@ to modify that setting in <b>controller_Linux.cpp</b>.
 5. Open a terminal window, navigate to the V-REP folder, and do <b>./vrep.sh</b> to launch V-REP.
 6. Follow steps 6-7 for Windows above.
 
+## Development
+
+If you want to develop Hackflight-VREP, you will also need to clone the [https://github.com/simondlevy/Hackflight](Hackflight)
+repository.  We suggest cloning it into your <b>Arduino/libraries</b> folder, as that is where the rest of the code
+expects it to be.  (On Windows, your Arduino folder should be in your <b>Documents</b> folder; on Linux, in your home
+directory.)
+
 ## Developing for Windows
 
 You will need Visual Studio 2015.  After cloning the hackflight repository,
