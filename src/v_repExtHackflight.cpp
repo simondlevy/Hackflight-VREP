@@ -178,10 +178,8 @@ void VrepSimBoard::imuGetGyro(int16_t gyroADC[3])
     gyroADC[2] = -(int16_t)(250 * gyro[2]);
 }
 
-void VrepSimBoard::ledSet(uint8_t id, bool is_on, float max_brightness) 
+void VrepSimBoard::ledSet(uint8_t id, bool is_on) 
 { 
-    (void)max_brightness;
-
     leds[id].set(is_on);
 }
 

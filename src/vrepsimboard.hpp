@@ -34,7 +34,7 @@ namespace hf {
             virtual void     imuGetGyro(int16_t gyroADC[3]) override;
             virtual void     init(void) override;
             virtual const    Config& getConfig() override;
-            virtual void     ledSet(uint8_t id, bool is_on, float max_brightness)  override;
+            virtual void     ledSet(uint8_t id, bool is_on)  override;
             virtual uint64_t getMicros() override;
             virtual uint8_t  serialAvailableBytes(void) override;
             virtual uint8_t  serialReadByte(void) override;
