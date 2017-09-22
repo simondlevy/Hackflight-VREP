@@ -40,7 +40,6 @@ static const int BARO_NOISE_PASCALS        = 3;
 #include <iostream>
 using namespace std;
 
-#include "controller.hpp"
 #include "sim_extras.hpp"
 
 #ifdef _WIN32
@@ -49,18 +48,10 @@ using namespace std;
 #else
 #include <unistd.h>
 #include <fcntl.h>
-#include "controller_Posix.hpp"
 #endif 
 
 // Header-only Hackflight firmware
-#include <board.hpp>
 #include <hackflight.hpp>
-
-// Controller type
-static controller_t controller;
-
-// Stick demands from controller
-static float demands[5];
 
 #define CONCAT(x,y,z) x y z
 #define strConCat(x,y,z)	CONCAT(x,y,z)
@@ -76,10 +67,6 @@ static uint64_t micros;
 
 // Launch support
 static bool ready;
-
-// needed for spring-mounted throttle stick
-static float throttleDemand;
-static const float SPRINGY_THROTTLE_INC = .01f;
 
 // IMU support
 static float accel[3];
@@ -249,48 +236,14 @@ void VrepSimBoard::serialWriteByte(uint8_t c)
 
 } // namespace hf
 
-// Receiver implementation ======================================================
-
-#include "vrepsimreceiver.hpp"
-
-namespace hf {
-
-void VrepSimReceiver::begin(void)
-{
-}
-
-bool VrepSimReceiver::useSerial(void)
-{
-    return true;
-}
-
-uint16_t VrepSimReceiver::readChannel(uint8_t chan)
-{
-    // Special handling for throttle
-    float demand = (chan == 0) ? throttleDemand : demands[chan];
-
-    // Special handling for pitch, roll on PS3, XBOX360
-    if (chan == 1 || chan == 2) {
-        if (controller == PS3)
-            demand /= 2;
-        if (controller == XBOX360)
-            demand /= 1.5;
-    }
-
-    // Joystick demands are in [-1,+1]; convert to [1000,2000]
-    uint16_t pwm = (uint16_t)(demand*500 + 1500);
-
-    printf("%d: %d%c", chan+1, pwm, chan==4?'\n':'\t');
-
-    return pwm;
-}
-
-} // namespace hf
-
 // Model implementation ======================================================
 
 #include "vrepsimmodel.hpp"
 
+// Receiver implementation ======================================================
+
+#include <receivers/controller/controller.hpp>
+hf::Controller controller;
 
 // --------------------------------------------------------------------------------------------------
 
@@ -371,17 +324,7 @@ void LUA_START_CALLBACK(SScriptCallBack* cb)
     CScriptFunctionData D;
 
     // Init Hackflight object
-    h.init(new hf::VrepSimBoard(), new hf::VrepSimReceiver(), new hf::VrepSimModel());
-
-    // Need this for throttle on PS3
-    throttleDemand = -1;
-
-    // For safety, all controllers start at minimum throttle, aux switch off
-    demands[0] = -1;
-	demands[4] = -1;
-
-    // Each input device has its own axis and button mappings
-    controller = controllerInit();
+    h.init(new hf::VrepSimBoard(), &controller, new hf::VrepSimModel());
 
     // Do any extra initialization needed
     //simExtrasStart();
@@ -452,23 +395,6 @@ void LUA_UPDATE_CALLBACK(SScriptCallBack* cb)
     // Read accelerometer
     simReadForceSensor(accelHandle, accel, NULL);
 
-    // Get demands from controller
-    controllerRead(controller, demands);
-
-    // PS3 spring-mounted throttle requires special handling
-	switch (controller) {
-	case PS3:
-	case XBOX360:
-        throttleDemand += demands[0] * SPRINGY_THROTTLE_INC;     
-        if (throttleDemand < -1)
-            throttleDemand = -1;
-        if (throttleDemand > 1)
-            throttleDemand = 1;
-		break;
-	default:
-        throttleDemand = demands[0];
-	}
-
     // Increment microsecond count
     micros += (uint64_t)(1e6 * timestep);
 
@@ -536,7 +462,7 @@ void LUA_UPDATE_CALLBACK(SScriptCallBack* cb)
 void LUA_STOP_CALLBACK(SScriptCallBack* cb)
 {
     // Disconnect from handheld controller
-    controllerClose();
+    controller.halt();
 
     // Turn off LEDs
     leds[0].set(false);
