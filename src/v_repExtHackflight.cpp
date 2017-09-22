@@ -18,6 +18,9 @@
    along with Hackflight-VREP.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#define _USE_MATH_DEFINES
+#include <cmath>
+
 // Physics simulation parameters
 
 static const int PARTICLE_COUNT_PER_SECOND = 750;
@@ -187,12 +190,6 @@ uint64_t VrepSimBoard::getMicros()
 {
     return micros; 
 }
-
-void VrepSimBoard::debug(char * msg)
-{
-    printf("%s\n", msg);
-}
-
 
 void VrepSimBoard::writeMotor(uint8_t index, uint16_t value)
 {
