@@ -93,14 +93,14 @@
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\include;C:\Users\levys\Desktop\Hackflight\include;C:\Users\levys\Desktop\Hackflight\common;C:\Users\levys\Desktop\Hackflight-VREP\src;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\levys\Desktop\Hackflight\extras\controller;C:\Users\levys\Desktop\Hackflight\src;C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\levys\Documents\Arduino\libraries\Hackflight\src;C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\include;$(IncludePath)</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\levys\Desktop\Hackflight-VREP\src;C:\Users\levys\Desktop\Hackflight\extras\controller;C:\Users\levys\Desktop\Hackflight\src;C:\Program Files\V-REP3\V-REP_PRO_EDU\programming\include;$(IncludePath)</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\levys\Desktop\hackflight\common;C:\Users\levys\Desktop\hackflight\sim\outdoors;C:\Users\levys\Desktop\hackflight\firmware;C:\Users\levys\Desktop\hackflight\sim;C:\Program Files %28x86%29\V-REP3\V-REP_PRO_EDU\programming\include;$(IncludePath)</IncludePath>
     <ExecutablePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ExecutablePath)</ExecutablePath>
     <ExecutablePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\levys\Desktop\hackflight\firmware;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>..\..\..\..\..\..\Program Files\V-REP3\V-REP_PRO_EDU</OutDir>
+    <OutDir>.\x64\Release</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
@@ -218,12 +218,14 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <AdditionalDependencies>Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y "$(ProjectDir)x64\Release\v_repExtHackflight.dll" "C:\Program Files\V-REP3\V-REP_PRO_EDU"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\..\Program Files\V-REP3\V-REP_PRO_EDU\programming\common\scriptFunctionData.cpp" />
     <ClCompile Include="..\..\..\..\..\..\Program Files\V-REP3\V-REP_PRO_EDU\programming\common\scriptFunctionDataItem.cpp" />
     <ClCompile Include="..\..\..\..\..\..\Program Files\V-REP3\V-REP_PRO_EDU\programming\common\v_repLib.cpp" />
-    <ClCompile Include="..\..\..\Hackflight\extras\controller\controller_Windows.cpp" />
     <ClCompile Include="..\..\src\v_repExtHackflight.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

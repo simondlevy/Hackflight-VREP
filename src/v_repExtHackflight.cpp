@@ -42,14 +42,6 @@ using namespace std;
 
 #include "sim_extras.hpp"
 
-#ifdef _WIN32
-#include "Shlwapi.h"
-#define sprintf sprintf_s
-#else
-#include <unistd.h>
-#include <fcntl.h>
-#endif 
-
 // Header-only Hackflight firmware
 #include <hackflight.hpp>
 
@@ -242,7 +234,7 @@ void VrepSimBoard::serialWriteByte(uint8_t c)
 
 // Receiver implementation ======================================================
 
-#include <receivers/controller/controller.hpp>
+#include <receivers/controller.hpp>
 hf::Controller controller;
 
 // --------------------------------------------------------------------------------------------------
