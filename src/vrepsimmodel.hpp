@@ -38,7 +38,7 @@ namespace hf {
 
                 // Yaw: P must be positive
                 yawP           = 0.1f;
-                yawI           = 0.05;
+                yawI           = 0.05f;
             }
     };
 
