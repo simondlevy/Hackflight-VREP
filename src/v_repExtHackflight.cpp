@@ -52,6 +52,13 @@ using namespace std;
 
 LIBRARY vrepLib;
 
+// OS-dependent stuff
+#ifdef _WIN32
+#define SPRINTF sprintf_s
+#else
+#define SPRINTF sprintf
+#endif
+
 // Hackflight interface
 extern void setup(void);
 extern void loop(void);
@@ -234,7 +241,7 @@ void VrepSimBoard::serialWriteByte(uint8_t c)
 
 // Receiver implementation ======================================================
 
-#include <receivers/controller.hpp>
+#include <receivers/sim.hpp>
 hf::Controller controller;
 
 // --------------------------------------------------------------------------------------------------
@@ -283,14 +290,14 @@ static void startToast(const char * message, int colorR, int colorG, int colorB)
 static int get_indexed_object_handle(const char * name, int index)
 {
     char tmp[100];
-    sprintf(tmp, "%s%d", name, index+1);
+    SPRINTF(tmp, "%s%d", name, index+1);
     return simGetObjectHandle(tmp);
 }
 
 static int get_indexed_suffixed_object_handle(const char * name, int index, const char * suffix)
 {
     char tmp[100];
-    sprintf(tmp, "%s%d_%s", name, index+1, suffix);
+    SPRINTF(tmp, "%s%d_%s", name, index+1, suffix);
     return simGetObjectHandle(tmp);
 }
 
@@ -341,7 +348,7 @@ void LUA_START_CALLBACK(SScriptCallBack* cb)
 static void set_indexed_float_signal(const char * name, int i, int k, float value)
 {
     char tmp[100];
-    sprintf(tmp, "%s%d%d", name, i+1, k+1);
+    SPRINTF(tmp, "%s%d%d", name, i+1, k+1);
     simSetFloatSignal(tmp, value);
 }
 
