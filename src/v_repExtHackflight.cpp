@@ -199,32 +199,6 @@ void VrepSimBoard::delayMilliseconds(uint32_t msec)
 {
 }
 
-void VrepSimBoard::normalizeV(float src[3], float dest[3])
-{
-    float length = sqrtf(src[0] * src[0] + src[1] * src[1] + src[2] * src[2]);
-
-    if (length != 0) {
-        dest[0] = src[0] / length;
-        dest[1] = src[1] / length;
-        dest[2] = src[2] / length;
-    }
-}
-
-uint8_t VrepSimBoard::serialAvailableBytes(void)
-{
-	return 0;
-}
-
-uint8_t VrepSimBoard::serialReadByte(void)
-{
-	return 0;
-}
-
-void VrepSimBoard::serialWriteByte(uint8_t c)
-{
-	(void)c;
-}
-
 
 } // namespace hf
 
