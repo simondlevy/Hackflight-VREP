@@ -33,7 +33,7 @@ namespace hf {
             virtual void     imuGetEuler(float eulerAnglesRadians[3]) override;
             virtual void     imuGetGyro(int16_t gyroADC[3]) override;
             virtual void     init(void) override;
-            virtual const    Config& getConfig() override;
+            virtual void     modifyConfig(Config& config) override;
             virtual void     ledSet(uint8_t id, bool is_on)  override;
             virtual uint64_t getMicros() override;
             virtual uint8_t  serialAvailableBytes(void) override;

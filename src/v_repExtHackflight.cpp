@@ -154,12 +154,10 @@ void VrepSimBoard::init(void)
 
 }
 
-const Config& VrepSimBoard::getConfig()
+void VrepSimBoard::modifyConfig(Config& config)
 {
     // Loop timing overrides
     config.loop.imuLoopMicro       = 10000;    // VREP's shortest simulation period
-
-    return config;
 }
 
 bool VrepSimBoard::skipArming(void)
