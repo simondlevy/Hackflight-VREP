@@ -136,8 +136,11 @@ static LED leds[2];
 
 namespace hf {
 
-void VrepSimBoard::init(void)
+void VrepSimBoard::init(Config& config)
 {
+
+    // Loop timing overrides
+    config.loop.imuLoopMicro       = 10000;    // VREP's shortest simulation period
 
     for (int k=0; k<3; ++k) {
         EstG[k] = 0;
@@ -154,29 +157,21 @@ void VrepSimBoard::init(void)
 
 }
 
-void VrepSimBoard::modifyConfig(Config& config)
-{
-    // Loop timing overrides
-    config.loop.imuLoopMicro       = 10000;    // VREP's shortest simulation period
-}
 
 bool VrepSimBoard::skipArming(void)
 {
     return true;
 }
 
-void VrepSimBoard::imuGetEuler(float eulerAnglesRadians[3])
+void VrepSimBoard::getImu(float eulerAnglesRadians[3], int16_t gyroRaw[3])
 {
     eulerAnglesRadians[0] = -eulerAngles[1];
     eulerAnglesRadians[1] = -eulerAngles[0];
     eulerAnglesRadians[2] =  eulerAngles[2];
-}
 
-void VrepSimBoard::imuGetGyro(int16_t gyroADC[3])
-{
-    gyroADC[1] = -(int16_t)(250 * gyro[0]);
-    gyroADC[0] = -(int16_t)(250 * gyro[1]);
-    gyroADC[2] = -(int16_t)(250 * gyro[2]);
+    gyroRaw[1] = -(int16_t)(250 * gyro[0]);
+    gyroRaw[0] = -(int16_t)(250 * gyro[1]);
+    gyroRaw[2] = -(int16_t)(250 * gyro[2]);
 }
 
 void VrepSimBoard::ledSet(uint8_t id, bool is_on) 

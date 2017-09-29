@@ -30,10 +30,8 @@ namespace hf {
 
         public:
 
-            virtual void     imuGetEuler(float eulerAnglesRadians[3]) override;
-            virtual void     imuGetGyro(int16_t gyroADC[3]) override;
-            virtual void     init(void) override;
-            virtual void     modifyConfig(Config& config) override;
+            virtual void     init(Config& config) override;
+            virtual void     getImu(float eulerAnglesRadians[3], int16_t gyroRaw[3]) override;
             virtual void     ledSet(uint8_t id, bool is_on)  override;
             virtual uint64_t getMicros() override;
             virtual void     writeMotor(uint8_t index, uint16_t value) override;
