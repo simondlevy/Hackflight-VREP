@@ -1,7 +1,7 @@
-# Running Hackflight in the V-REP simulator
-
 # Note: We are no longer developing this project.  
-## We've switched to the UnrealEngine
+## We've switched to a [simulator](https://github.com/simondlevy/HackflightSim) using UnrealEngine
+
+# Running Hackflight in the V-REP simulator
 
 <img src="hackflight.png">
 
