@@ -1,5 +1,8 @@
 # Running Hackflight in the V-REP simulator
 
+# Note: We are no longer developing this project.  
+## We've switched to the UnrealEngine
+
 <img src="hackflight.png">
 
 Hackflight-VREP is a cross-platform flight simulator using the 
