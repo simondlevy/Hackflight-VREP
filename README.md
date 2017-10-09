@@ -1,5 +1,5 @@
 # Note: We are no longer developing this project.  
-## We've switched to a [simulator](https://github.com/simondlevy/HackflightSim) using UnrealEngine
+## We've switched to a [simulator](https://github.com/simondlevy/HackflightSim) built with UnrealEngine
 
 # Running Hackflight in the V-REP simulator
 
