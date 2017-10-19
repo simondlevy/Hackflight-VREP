@@ -203,7 +203,12 @@ void VrepSimBoard::delayMilliseconds(uint32_t msec)
 
 // Receiver implementation ======================================================
 
-#include <receivers/sim.hpp>
+#ifdef _WIN32
+#include <receivers/sim/windows.hpp>
+#else
+#include <receivers/sim/linux.hpp>
+#endif
+
 hf::Controller controller;
 
 // --------------------------------------------------------------------------------------------------
