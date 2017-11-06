@@ -31,7 +31,7 @@ namespace hf {
         public:
 
             virtual void     init(Config& config) override;
-            virtual void     getImu(float eulerAnglesRadians[3], int16_t gyroRaw[3]) override;
+            virtual void     getImu(float eulerAnglesRadians[3], float gyroRadiansPerSecond[3]) override;
             virtual void     ledSet(uint8_t id, bool is_on)  override;
             virtual uint64_t getMicros() override;
             virtual void     writeMotor(uint8_t index, float value) override;

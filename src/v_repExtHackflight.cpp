@@ -163,15 +163,15 @@ bool VrepSimBoard::skipArming(void)
     return true;
 }
 
-void VrepSimBoard::getImu(float eulerAnglesRadians[3], int16_t gyroRaw[3])
+void VrepSimBoard::getImu(float eulerAnglesRadians[3], float gyroRadiansPerSecond[3])
 {
     eulerAnglesRadians[0] = -eulerAngles[1];
     eulerAnglesRadians[1] = -eulerAngles[0];
     eulerAnglesRadians[2] =  eulerAngles[2];
 
-    gyroRaw[1] = -(int16_t)(250 * gyro[0]);
-    gyroRaw[0] = -(int16_t)(250 * gyro[1]);
-    gyroRaw[2] = -(int16_t)(250 * gyro[2]);
+    gyroRadiansPerSecond[0] = -gyro[1];
+    gyroRadiansPerSecond[1] = -gyro[0];
+    gyroRadiansPerSecond[2] = -gyro[2];
 }
 
 void VrepSimBoard::ledSet(uint8_t id, bool is_on) 
@@ -204,7 +204,7 @@ void VrepSimBoard::delayMilliseconds(uint32_t msec)
 // Receiver implementation ======================================================
 
 #ifdef _WIN32
-#include <receivers/sim/windows.hpp>
+#include <receivers/sim.hpp>
 #else
 #include <receivers/sim/linux.hpp>
 #endif
